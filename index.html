@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Jquery todolist</h1>
+        <form action="toDoList">
+            <input type="text" name="listItem">
+        </form>
+        <input type="button" class='button' id="button" value="＋">
+        <ol class="addList"></ol>
+
+
+
+    </div>
+    <script>
+        $(document).ready(
+            function() {
+                // 四件事
+                // *** 1. 按按鈕 button click
+                // *** 2. 按Enter時 input keyup
+                // *** 3. 按2下li dbclick
+                // *** input focus
+
+
+                $('#button').click(
+                    function() {
+                        var toAdd = $('input[name=listItem]').val();
+                        // *** 沒輸入文字時
+                        if ($("input[type= text").val() == "") {
+                            alert("wrong")
+                                // 停止繼續
+                            return
+                        }
+                        // 有輸入文字時
+                        $("ol").append("<li>" + toAdd + "</li>");
+                        // 將輸入欄清空
+                        $("input[type = text]").val("");
+
+                    }
+
+                )
+                $('input[name=listItem]').bind('keypress',
+                    function(event) {
+                        // 按下的Enter時
+                        if (event.keyCode == 13) {
+                            $('#button').click();
+                            $("input[type= text").val("");
+                            // 停止繼續
+                            event.preventDefault();
+                        }
+
+
+                    })
+
+                $(document).on("dblclick", 'li',
+                    function() {
+                        $(this).toggleClass("strike").fadeOut("slow")
+                    })
+
+                $("input[name=listItem]").focus(
+                    function() {
+                        $(this).val('');
+                    }
+                )
+
+
+                // $('addList').sortable();
+            }
+
+
+
+        )
+    </script>
+</body>
+
+</html>
